@@ -8,6 +8,7 @@
 // This program displays:
 //       Evaluate postfix expressions with multiple letter variables
 //------------------------------------------------------------------------------------------
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
 
