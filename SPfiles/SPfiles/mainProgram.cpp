@@ -8,3 +8,10 @@
 // This program displays:
 //       Evaluate postfix expressions with multiple letter variables
 //------------------------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+int main()
+{
+	system("Pause");
+	return 0;
+}
