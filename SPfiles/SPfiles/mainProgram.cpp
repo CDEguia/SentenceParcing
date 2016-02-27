@@ -12,6 +12,15 @@
 using namespace std;
 int main()
 {
+	char cont;
+
+	do
+	{
+
+		cout << "\tContinue (y/n)? "; cin >> cont; cont = toupper(cont);
+		cout << endl;
+		cin.ignore();
+	} while (cont != 'N');
 	system("Pause");
 	return 0;
 }
