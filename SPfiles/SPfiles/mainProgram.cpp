@@ -27,7 +27,16 @@ int main()
 		cout << "\tEnter a statement: "; cin.getline(sent,80);
 		token = strtok(sent, " ");			//tokenize this statement
 		while (token != NULL) {				//loops through each token
-			cout << token << "\t" << endl;
+			cout << token << "\t";
+			bool found = false;
+			for each(char set in special) {
+				if (set == *token) { cout << "special symbol\n"; found = true; }
+			}
+			if (!found) {
+				for each(char set in reservedWords) {
+					if (set == *token) { cout << "reserved word\n"; found = true; }
+				}
+			}
 			token = strtok(NULL, " ");				// gets the next char array
 		}
 		cout << "\tContinue (y/n)? "; cin >> cont; cont = toupper(cont);
