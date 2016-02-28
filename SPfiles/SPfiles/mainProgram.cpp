@@ -17,7 +17,7 @@ int main()
 {
 	char cont;
 	char reservedWords[4][10] = { "cout<<","for","int","while" };
-	char special[7][3] = { "=" , "*" , "-" , ";" , "(" , ")" , "<=" };
+	char special[8][3] = { "+" , "=" , "*" , "-" , ";" , "(" , ")" , "<=" };
 
 	do
 	{
@@ -32,22 +32,24 @@ int main()
 			for each(char set in special) {
 				if (set == *token) { cout << "special symbol\n"; found = true; }
 			}
-			if (!found) {
-				for each(char set in reservedWords) {
-					if (set == *token) { cout << "reserved word\n"; found = true; }
+			if (found == false) {
+				for (int i = 0; i < 4;i++) {
+					if (*reservedWords[i] == *token) { cout << "reserved word\n"; found = true; }
 				}
 			}
-			else if (!found) {
+			if (found == false) {
 				int i = 0;
 				char singletoken = token[i];
 				while(singletoken != NULL) {
 					if (singletoken < '0' || singletoken > '9') { cout << "not identifier\n"; found = true; break; }
 					singletoken = token[++i];
 				}
-				if (!found) cout << "number\n";
+				
 			}
+			if (found == false) cout << "number\n";
 			token = strtok(NULL, " ");				// gets the next char array
 		}
+
 		cout << "\tContinue (y/n)? "; cin >> cont; cont = toupper(cont);
 		cout << endl;
 		cin.ignore();
