@@ -11,6 +11,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
+#include <string>
 
 using namespace std;
 int main()
@@ -35,8 +36,9 @@ int main()
 			}
 			if (found == false) {
 				for (int i = 0; i < 4; i++) {
-					char *word = reservedWords[i];
-					if (*word == *token) {
+					string word = reservedWords[i];
+					//cout << word << endl;
+					if (word == token) {
 						cout << "reserved word\n"; found = true; break;
 					}
 				}
