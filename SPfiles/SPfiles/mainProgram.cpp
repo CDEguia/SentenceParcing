@@ -35,8 +35,10 @@ int main()
 			}
 			if (found == false) {
 				for (int i = 0; i < 4; i++) {
-
-					if (reservedWords[i] == token) { cout << "reserved word\n"; found = true; break; }
+					char *word = reservedWords[i];
+					if (*word == *token) {
+						cout << "reserved word\n"; found = true; break;
+					}
 				}
 			}
 			if (found == false && (token[0] >= '0' && token[0] <= '9')) {
