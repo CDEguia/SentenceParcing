@@ -27,26 +27,30 @@ int main()
 		cout << "\tEnter a statement: "; cin.getline(sent,80);
 		token = strtok(sent, " ");			//tokenize this statement
 		while (token != NULL) {				//loops through each token
-			cout << token << "\t";
-			bool found = false;
+			cout << token << "\t";			//displays the current token
+			bool found = false;				// changes to TRUE once token is identified
 			for each(char set in special) {
-				if (set == *token) { cout << "special symbol\n"; found = true; }
+				//cout << set;
+				if (set == *token) { cout << "special symbol\n"; found = true; break; }
 			}
 			if (found == false) {
-				for (int i = 0; i < 4;i++) {
-					if (*reservedWords[i] == *token) { cout << "reserved word\n"; found = true; }
+				for (int i = 0; i < 4; i++) {
+
+					if (reservedWords[i] == token) { cout << "reserved word\n"; found = true; break; }
 				}
 			}
-			if (found == false) {
-				int i = 0;
+			if (found == false && (token[0] >= '0' && token[0] <= '9')) {
+				int i = 1;
 				char singletoken = token[i];
 				while(singletoken != NULL) {
 					if (singletoken < '0' || singletoken > '9') { cout << "not identifier\n"; found = true; break; }
 					singletoken = token[++i];
 				}
+				if (singletoken == NULL) { found = true; cout << "number\n"; }
 				
 			}
-			if (found == false) cout << "number\n";
+			if (found == false) cout << "identifier\n";
+			
 			token = strtok(NULL, " ");				// gets the next char array
 		}
 
