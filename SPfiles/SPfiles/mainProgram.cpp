@@ -51,7 +51,6 @@ int main()
 					singletoken = token[++i];
 				}
 				if (singletoken == NULL) { found = true; cout << "number\n"; }
-				
 			}
 			if (found == false) cout << "identifier\n";
 			
