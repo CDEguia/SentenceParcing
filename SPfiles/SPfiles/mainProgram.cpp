@@ -37,6 +37,15 @@ int main()
 					if (set == *token) { cout << "reserved word\n"; found = true; }
 				}
 			}
+			else if (!found) {
+				int i = 0;
+				char singletoken = token[i];
+				while(singletoken != NULL) {
+					if (singletoken < '0' || singletoken > '9') { cout << "not identifier\n"; found = true; break; }
+					singletoken = token[++i];
+				}
+				if (!found) cout << "number\n";
+			}
 			token = strtok(NULL, " ");				// gets the next char array
 		}
 		cout << "\tContinue (y/n)? "; cin >> cont; cont = toupper(cont);
