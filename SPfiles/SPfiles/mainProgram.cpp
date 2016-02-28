@@ -11,7 +11,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
-#include <string>
 
 using namespace std;
 int main()
@@ -27,18 +26,16 @@ int main()
 
 		cout << "\tEnter a statement: "; cin.getline(sent,80);
 		token = strtok(sent, " ");			//tokenize this statement
+		
 		while (token != NULL) {				//loops through each token
 			cout << token << "\t";			//displays the current token
 			bool found = false;				// changes to TRUE once token is identified
-			for each(char set in special) {
-				//cout << set;
-				if (set == *token) { cout << "special symbol\n"; found = true; break; }
+			for (int i = 0; i < 8;++i) {
+				if (strcmp(special[i], token) == 0) { cout << "special symbol\n"; found = true; break; }
 			}
 			if (found == false) {
 				for (int i = 0; i < 4; i++) {
-					string word = reservedWords[i];
-					//cout << word << endl;
-					if (word == token) {
+					if (strcmp(reservedWords[i], token) == 0) {
 						cout << "reserved word\n"; found = true; break;
 					}
 				}
@@ -51,13 +48,12 @@ int main()
 					singletoken = token[++i];
 				}
 				if (singletoken == NULL) { found = true; cout << "number\n"; }
-				
 			}
-			if (found == false) cout << "identifier\n";
+			if (found == false) { cout << "identifier\n"; }
 			
 			token = strtok(NULL, " ");				// gets the next char array
 		}
-
+		cin.ignore();
 		cout << "\tContinue (y/n)? "; cin >> cont; cont = toupper(cont);
 		cout << endl;
 		cin.ignore();
