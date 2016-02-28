@@ -12,6 +12,8 @@
 #include <iostream>
 #include <cstring>
 
+const int InputSize = 100;
+
 using namespace std;
 int main()
 {
@@ -22,9 +24,9 @@ int main()
 	do
 	{
 		char *token;						// Pointer to character array
-		char sent[100];						// Holds the Expression
+		char sent[InputSize];						// Holds the Expression
 
-		cout << "\tEnter a statement: "; cin.getline(sent,80);
+		cout << "\tEnter a statement: "; cin.getline(sent, InputSize);
 		token = strtok(sent, " ");			//tokenize this statement
 		
 		while (token != NULL) {				//loops through each token
@@ -39,21 +41,21 @@ int main()
 						cout << "reserved word\n"; found = true; break;
 					}
 				}
-			}
-			if (found == false && (token[0] >= '0' && token[0] <= '9')) {
-				int i = 1;
-				char singletoken = token[i];
-				while(singletoken != NULL) {
-					if (singletoken < '0' || singletoken > '9') { cout << "not identifier\n"; found = true; break; }
-					singletoken = token[++i];
+				if (found == false && (token[0] >= '0' && token[0] <= '9')) {
+					int i = 1;
+					char singletoken = token[i];
+					while (singletoken != NULL) {
+						if (singletoken < '0' || singletoken > '9') { cout << "not identifier\n"; found = true; break; }
+						singletoken = token[++i];
+					}
+					if (singletoken == NULL) { found = true; cout << "number\n"; }
 				}
-				if (singletoken == NULL) { found = true; cout << "number\n"; }
+				if (found == false) { cout << "identifier\n"; }
 			}
-			if (found == false) { cout << "identifier\n"; }
-			
+
 			token = strtok(NULL, " ");				// gets the next char array
 		}
-		cin.ignore();
+		//cin.ignore();
 		cout << "\tContinue (y/n)? "; cin >> cont; cont = toupper(cont);
 		cout << endl;
 		cin.ignore();
